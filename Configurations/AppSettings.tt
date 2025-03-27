@@ -16,7 +16,7 @@ namespace GeradorAppSettings.Configurations;
 
 <#
     var xCurrentDirectory =   Path.GetDirectoryName(Host.TemplateFile);
-    var xProjectRoot = Path.Combine($"{xCurrentDirectory}", @"..\");
+    var xProjectRoot = Path.Combine($"{xCurrentDirectory}", @"../");
     var xJsonPath = Path.Combine(xProjectRoot, "appsettings.json");
     var xJsonText = File.ReadAllText(xJsonPath);
     var xRoot = JObject.Parse(xJsonText);
