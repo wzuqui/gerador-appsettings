@@ -1,23 +1,18 @@
 tasks:
   - init: |
-      # Instala o .NET SDK 9
-      wget https://dot.net/v1/dotnet-install.sh
-      chmod +x dotnet-install.sh
-      ./dotnet-install.sh --channel 9.0
+      # Instala .NET SDK 9 só se ainda não estiver instalado
+      if [ ! -d "$HOME/.dotnet" ]; then
+        wget https://dot.net/v1/dotnet-install.sh -O /tmp/dotnet-install.sh
+        chmod +x /tmp/dotnet-install.sh
+        /tmp/dotnet-install.sh --channel 9.0
+      fi
 
-      # Define variáveis de ambiente pro shell atual
       export DOTNET_ROOT=$HOME/.dotnet
       export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
 
-      # Restaura ferramentas .NET locais (como t4, ef, etc.)
       dotnet tool restore
-
-      # Instala dependências Node.js
       npm install
     command: |
-      # Reexporta variáveis de ambiente pro comando
       export DOTNET_ROOT=$HOME/.dotnet
       export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-
-      # Inicia a aplicação
       npm run start
