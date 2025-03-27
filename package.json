@@ -1,0 +1,6 @@
+{
+  "name": "gerador-appsettings",
+  "scripts": {
+    "start": "node run-t4.mjs"
+  }
+}
